@@ -1,0 +1,22 @@
+{
+  "wallmartLandingPage": {
+    "pageTitle": "Online Shopping Canada: Everyday Low Prices at Walmart.ca!",
+    "logo": "https://www.walmart.ca/assets/img/simplified-header/walmart-logo_en.svg",
+    "searchItems": [
+      "watches: fossil watch",
+      "phones: samsung galaxy",
+      "bbq: propane bbq",
+      "tablets: samsung tablets"
+    ]
+  },
+
+  "searchProductPage":{
+    "pageTitle":"search page title"
+  },
+
+  "cart":{
+    "pageTitle":"search page title",
+    "searchItem":"watch"
+
+  }
+}
