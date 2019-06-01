@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# Ignore target Folder
+target/
+
 # Log file
 *.log
 
