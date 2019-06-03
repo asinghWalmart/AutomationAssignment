@@ -9,14 +9,20 @@
       "tablets: samsung tablets"
     ]
   },
-
-  "searchProductPage":{
-    "pageTitle":"search page title"
+  "searchProductPage": {
+    "pageTitle": "search page title"
   },
-
-  "cart":{
-    "pageTitle":"search page title",
-    "searchItem":"watch"
-
+  "cart": {
+    "pageTitle": "search page title",
+    "searchItem": "watch"
+  },
+  "createAccount": {
+    "createAccountData": [
+      "email: asinghbrampton@gmail.com",
+      "fName:Amrit",
+      "lName:Singh",
+      "password:Password",
+      "confirmPassword:Password"
+    ]
   }
 }

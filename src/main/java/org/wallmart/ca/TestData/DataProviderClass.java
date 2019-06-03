@@ -21,6 +21,4 @@ public class DataProviderClass {
         }
         return data;
     }
-
-
 }
