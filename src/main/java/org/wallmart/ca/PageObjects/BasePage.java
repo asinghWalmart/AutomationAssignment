@@ -61,6 +61,7 @@ public class BasePage {
         logger.debug("Check to see if WebElement is visible in the Dom ");
         if (isVisible(element, timeToWait, logger)) {
             logger.debug("Element is visible.. Clicking on the Element");
+
             if (scrollToElement(myElement, logger)) {
                 myElement.click();
                 return true;

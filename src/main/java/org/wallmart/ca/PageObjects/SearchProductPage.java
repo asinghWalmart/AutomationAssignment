@@ -2,7 +2,6 @@ package org.wallmart.ca.PageObjects;
 
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 
 public class SearchProductPage extends BasePage {
@@ -54,12 +53,12 @@ public class SearchProductPage extends BasePage {
         return false;
     }
 
-    public CheckOutPage getCheckoutPage(Logger logger) {
+    public ShoppingCartPage getShoppingCartPage(Logger logger) {
         if (click(checkOutButton, logger, 30)) {
             logger.debug("checkOutButton is clicked");
             if (isVisible(checkOutPage, 30, logger)) {
                 logger.debug("Checkout Page is Displayed");
-                return new CheckOutPage();
+                return new ShoppingCartPage(logger);
             }
         }
         return null;

@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.wallmart.ca.PageObjects.SearchProductPage;
+import org.wallmart.ca.PageObjects.SecureCheckoutPage;
+import org.wallmart.ca.PageObjects.ShoppingCartPage;
 import org.wallmart.ca.PageObjects.WallmartLandingPage;
 import org.wallmart.ca.TestData.DataProviderClass;
 import org.wallmart.ca.TestData.TestData;
@@ -41,7 +43,7 @@ public class SmokeTest extends BaseTest {
         // Add Items to Cart
         Assert.assertTrue( searchPage.addItemsToCart(logger) ,"Item Added to Cart");
         // Checkout Page is Displayed.
-        Assert.assertTrue( searchPage.getCheckoutPage(logger)!=null ,"Checkout Page is displayed");
+        Assert.assertTrue( searchPage.getShoppingCartPage(logger)!=null ,"Checkout Page is displayed");
     }
 
     @Test()
@@ -55,7 +57,13 @@ public class SmokeTest extends BaseTest {
         Assert.assertTrue( searchPage.isSearchPageLoaded(logger) ,"Searching Items is Successfull");
         // Add Items to Cart
         Assert.assertTrue( searchPage.addItemsToCart(logger) ,"Item Added to Cart");
-        // Checkout Page is Displayed.
-        Assert.assertTrue( searchPage.getCheckoutPage(logger)!=null ,"Checkout Page is displayed");
+        // Cart Page is Displayed.
+        ShoppingCartPage scp = searchPage.getShoppingCartPage(logger);
+        Assert.assertTrue( scp!=null ,"Shopping Cart Page is displayed");
+        // Proceed to Secure Checkout Page
+        SecureCheckoutPage securedCheckOutPage = scp.getSecureCheckoutPage(logger);
+        Assert.assertTrue( securedCheckOutPage!=null ,"Secured Checkout Page is displayed");
+
+
     }
 }
