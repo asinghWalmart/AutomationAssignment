@@ -14,7 +14,7 @@ public class SmokeTest extends BaseTest {
     @Test(dataProvider = "searchItems", dataProviderClass = DataProviderClass.class)
     public void testSearchFunctionality(String searchItem){
         logger = LoggingUtils.getLogger();
-        WallmartLandingPage landingPage = WallmartLandingPage.getLandingPage(logger);
+        WallmartLandingPage landingPage = new WallmartLandingPage().getLandingPage(logger);
         Assert.assertTrue(landingPage !=null,"Landing Page is Successfully Launched");
         SearchProductPage searchPage = landingPage.getSearchProductPage(searchItem,logger);
         Assert.assertTrue(searchPage !=null,"Search Page is Successfully Launched");
@@ -25,7 +25,7 @@ public class SmokeTest extends BaseTest {
     @Test()
     public void testAccountCreation() throws Exception{
         logger = LoggingUtils.getLogger();
-        WallmartLandingPage landingPage = WallmartLandingPage.getLandingPage(logger);
+        WallmartLandingPage landingPage = new WallmartLandingPage().getLandingPage(logger);
         landingPage.getCreateAccountPage(logger);
     }
 
@@ -33,7 +33,7 @@ public class SmokeTest extends BaseTest {
     public void verifyItemsAddedToCart() throws Exception{
         String searchItem = TestData.getData("cart", "searchItem", logger);
         logger = LoggingUtils.getLogger();
-        WallmartLandingPage landingPage = WallmartLandingPage.getLandingPage(logger);
+        WallmartLandingPage landingPage = new WallmartLandingPage().getLandingPage(logger);
         Assert.assertTrue(landingPage !=null,"Landing Page is Successfully Launched");
         SearchProductPage searchPage = landingPage.getSearchProductPage(searchItem,logger);
         Assert.assertTrue(searchPage !=null,"Search Page is Successfully Launched");
@@ -48,7 +48,7 @@ public class SmokeTest extends BaseTest {
     public void verifySecuredCheckoutPage() throws Exception{
         String searchItem = TestData.getData("cart", "searchItem", logger);
         logger = LoggingUtils.getLogger();
-        WallmartLandingPage landingPage = WallmartLandingPage.getLandingPage(logger);
+        WallmartLandingPage landingPage = new WallmartLandingPage().getLandingPage(logger);
         Assert.assertTrue(landingPage !=null,"Landing Page is Successfully Launched");
         SearchProductPage searchPage = landingPage.getSearchProductPage(searchItem,logger);
         Assert.assertTrue(searchPage !=null,"Search Page is Successfully Launched");

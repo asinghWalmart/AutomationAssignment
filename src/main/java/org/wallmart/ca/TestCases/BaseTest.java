@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.status.StatusLogger;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.wallmart.ca.DriverManager.DriverFactory;
@@ -28,11 +29,10 @@ public class BaseTest {
         logger = LoggingUtils.getLogger();
         LoggingUtils.setLogLevel(logger, "DEBUG");
         TestData.initaliseJsonParser(logger);
-        WebDriver driver = DriverFactory.createInstance(logger);
-        DriverManager.setDriver(driver);
+
     }
 
-    @AfterSuite
+    @AfterClass
     public void suiteTearDown() {
         DriverManager.closeDriver();
     }

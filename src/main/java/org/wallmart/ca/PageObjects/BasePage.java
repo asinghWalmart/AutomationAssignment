@@ -9,22 +9,25 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.wallmart.ca.DriverManager.DriverFactory;
 import org.wallmart.ca.DriverManager.DriverManager;
 import org.wallmart.ca.Util.Config;
 
 
 public class BasePage {
-    static String url;
-    static WebDriver driver;
-    public static JavascriptExecutor js;
+    String url;
+    WebDriver driver;
+    public JavascriptExecutor js;
 
-    public static void setUp() {
+    public void setUp(Logger logger) {
         driver = DriverManager.getDriver();
-        url = Config.getResourceBundle().getString("url");
-        driver.navigate().to(url);
+        if(driver == null){
+            driver = DriverFactory.createInstance(logger);
+            DriverManager.setDriver(driver);
+        }
     }
 
-    public static WebElement getElement(By by, Logger logger) {
+    public WebElement getElement(By by, Logger logger) {
         if (by == null) {
             logger.debug("By Object is Null ");
             return null;
@@ -40,7 +43,7 @@ public class BasePage {
     // return null;
 
 
-    public static boolean highlightElement(WebElement element, Logger logger) {
+    public boolean highlightElement(WebElement element, Logger logger) {
         // logger.("Highlighting the Element to click :- " + element.toString());
         js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 4px dashed red;');", element);
@@ -49,7 +52,7 @@ public class BasePage {
     }
 
     // click function for webdriver
-    public static boolean click(By element, Logger logger, long timeToWait) {
+    public boolean click(By element, Logger logger, long timeToWait) {
         logger.debug("Trying to click an WelElement " + element.toString());
         WebElement myElement = getElement(element, logger);
         //scrollToElement(element,logger);
@@ -71,7 +74,7 @@ public class BasePage {
     }
 
 
-    public static boolean hasLoaded(By element, long timeToWait) {
+    public boolean hasLoaded(By element, long timeToWait) {
         try {
 
             WebElement myDynamicElement = (new WebDriverWait(driver, timeToWait))
@@ -85,7 +88,7 @@ public class BasePage {
 
     }
 
-    public static boolean isClickable(WebElement element, long timeToWait) {
+    public boolean isClickable(WebElement element, long timeToWait) {
         try {
 
             WebElement myDynamicElement = (new WebDriverWait(driver, timeToWait))
@@ -100,7 +103,7 @@ public class BasePage {
     }
 
 
-    public static boolean isVisible(By element, long timeToWait, Logger logger) {
+    public boolean isVisible(By element, long timeToWait, Logger logger) {
         try {
             boolean result = hasLoaded(element, timeToWait);
             logger.debug("Element is Visible " + element + "-----> " + result);
@@ -112,7 +115,7 @@ public class BasePage {
         }
     }
 
-    public static boolean sendKeys(By element, String stringToSend, Logger logger) {
+    public boolean sendKeys(By element, String stringToSend, Logger logger) {
         if (stringToSend.length() == 0) {
             logger.debug("There is no String to send");
             return false;
@@ -136,13 +139,13 @@ public class BasePage {
 
     }
 
-    public static boolean moveMouseToElement(By element, Logger logger) {
+    public boolean moveMouseToElement(By element, Logger logger) {
         WebElement myElement = getElement(element, logger);
         new Actions(driver).moveToElement(myElement).build().perform();
         return true;
     }
 
-    public static boolean scrollToElement(WebElement element, Logger logger) {
+    public boolean scrollToElement(WebElement element, Logger logger) {
         logger.debug("Scroll to Element " + element.toString());
         logger.debug("Verify if Element is Visible");
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);

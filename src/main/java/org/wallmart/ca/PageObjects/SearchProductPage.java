@@ -14,6 +14,9 @@ public class SearchProductPage extends BasePage {
     private By checkOutButton = By.xpath("//*[@data-automation='a2c-checkout-cta']");
     private By checkOutPage = By.xpath("//*[@id='breadcrumb']");
 
+    SearchProductPage(Logger logger){
+        setUp(logger);
+    }
     public boolean isSearchPageLoaded(Logger logger) {
         if (isVisible(searchResults, 30, logger)) {
             if (isVisible(searchResultNumbers, 30, logger)) {
