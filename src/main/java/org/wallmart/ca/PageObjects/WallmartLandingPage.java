@@ -45,7 +45,6 @@ public class WallmartLandingPage extends BasePage {
     public CreateAccountPage getCreateAccountPage(Logger logger) throws Exception {
         logger.debug("Trying to get a Search Account Page");
         moveMouseToElement(myAccount,logger);
-        Thread.sleep(5000);
         if (isVisible(myAccountHovered, 30, logger)) {
             logger.debug("Mouse Movement Completed Successfully");
             if (click(myAccountLink, logger, 30)) {

@@ -17,7 +17,7 @@ import org.wallmart.ca.Util.Config;
 public class BasePage {
     String url;
     WebDriver driver;
-    public JavascriptExecutor js;
+    private JavascriptExecutor js;
 
     public void setUp(Logger logger) {
         driver = DriverManager.getDriver();
@@ -40,6 +40,21 @@ public class BasePage {
         }
     }
 
+    public WebElement getElement(By by, long timeToWait, Logger logger) {
+        if (by == null) {
+            logger.debug("By Object is Null ");
+            return null;
+        } else {
+            if (isVisible(by, timeToWait, logger)) {
+                logger.debug("Creating WebElement Using By Object " + by.toString());
+                return driver.findElement(by);
+            }
+            return null;
+        }
+    }
+
+    //a[@title='Click to close.']
+
     // return null;
 
 
@@ -53,8 +68,17 @@ public class BasePage {
 
     // click function for webdriver
     public boolean click(By element, Logger logger, long timeToWait) {
+        By feedBackModal = By.xpath("//a[@title='Click to close.']");
         logger.debug("Trying to click an WelElement " + element.toString());
         WebElement myElement = getElement(element, logger);
+        WebElement feedBackModalElement = getElement(feedBackModal,1,logger);
+        if(feedBackModalElement == null){
+            logger.debug("Feedback Modal is not displayed ");
+        }
+        else {
+            logger.debug("Feedback Modal is displayed .... CLICKING THE MODAL ");
+            feedBackModalElement.click();
+        }
         //scrollToElement(element,logger);
         highlightElement(myElement, logger);
         // check to see if Element is visible
